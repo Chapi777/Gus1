@@ -23,10 +23,9 @@ def zapolnenie():
         window2.configure(background='#BF7F30')
         txt_1 = Entry(window2, width=20, bg='#BF9930')
         txt_1.grid(row=5, column=2)
-        now = datetime.datetime.now()
-        k = (now.strftime("%Y-%m-%d %H:%M"))
+
         with connection.cursor() as cursor:
-            prof = f"SELECT "
+            prof = f"SELECT id_profs, name_profs FROM profesion"
             cursor.execute(prof)
             profs = cursor.fetchall()
             for i in profs:
@@ -51,11 +50,14 @@ def zapolnenie():
         def zapolnenie2():
             with connection.cursor() as cursor:
                 fior = txt_1.get()
-                loginr = txt_2.get()
-                passwordr = txt_3.get()
-                numberphoner = txt_4.get()
-                emailr = txt_5.get()
-                passportr = txt_6.get()
+                doljr = txt_2.get()
+                actualr = txt_3.get()
+                profr = txt_4.get()
+                obrazr = txt_5.get()
+                levelr = txt_6.get()
+
+                now = datetime.datetime.now()
+                k = (now.strftime("%Y-%m-%d %H:%M"))
 
                 if fior == '' or loginr == '' or passwordr == '' or numberphoner == '' or emailr == '' or passportr == '':
                     msg = "Поля не заполнены"
