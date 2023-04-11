@@ -15,6 +15,14 @@ connection = pymysql.connect(
         cursorclass=pymysql.cursors.DictCursor
     )
 
+def get(var):
+    var = variable.get()
+    res = "Сюда запрос в который ты передашь arg[var]"
+    value = []
+    for i in res:
+        value.append("Результат запроса")
+        # Здесь остальной код
+
 def zapolnenie():
         window2 = Tk()
         window2.title("Форма заполнения")
@@ -23,13 +31,19 @@ def zapolnenie():
         window2.configure(background='#BF7F30')
         txt_1 = Entry(window2, width=20, bg='#BF9930')
         txt_1.grid(row=5, column=2)
-
+        now = datetime.datetime.now()
+        k = (now.strftime("%Y-%m-%d %H:%M"))
         with connection.cursor() as cursor:
             prof = f"SELECT id_profs, name_profs FROM profesion"
             cursor.execute(prof)
             profs = cursor.fetchall()
             for i in profs:
                 doljnosti = [i['id_dolj']]
+
+        variable = tk.StringVar()
+        variable.set("Выберите должность: ")
+        menu = tk.OptionMenu(root1, variable, doljnosti*, command="Сюда вставь команду вывода. Пример команды на 18 строке")
+        menu.pack() # Или Place, как тебе удобнее
 
         combobox = ttk.Combobox(values=doljnosti)
         combobox.place()
@@ -50,14 +64,11 @@ def zapolnenie():
         def zapolnenie2():
             with connection.cursor() as cursor:
                 fior = txt_1.get()
-                doljr = txt_2.get()
-                actualr = txt_3.get()
-                profr = txt_4.get()
-                obrazr = txt_5.get()
-                levelr = txt_6.get()
-
-                now = datetime.datetime.now()
-                k = (now.strftime("%Y-%m-%d %H:%M"))
+                loginr = txt_2.get()
+                passwordr = txt_3.get()
+                numberphoner = txt_4.get()
+                emailr = txt_5.get()
+                passportr = txt_6.get()
 
                 if fior == '' or loginr == '' or passwordr == '' or numberphoner == '' or emailr == '' or passportr == '':
                     msg = "Поля не заполнены"
